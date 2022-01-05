@@ -58,4 +58,57 @@
 
 ---------
 
-## 3. Raspberry pi code 작성 및 실행
+## 3. 테스트를 위한 Node Red설치 및 실행
+ - IoT 장치들간 연결을 쉽게 지원하는 오픈소스인 Node-red를 사용하여 코딩없이 연결이 제대로 이루어지는지 확인한다. ( 인증서 유효성 검증 )
+ - 참고
+### Node red 설치 및 설정 : http://daddynkidsmakers.blogspot.com/2019/05/iot-connection-noderedorg.html
+### Node red & aws 연결 : https://www.youtube.com/watch?v=0PnrpBVUjJQ&ab_channel=%EA%B9%80%EB%8F%99%EC%9D%BC 
+
+### 1) Node 생성 및 연결 
+ - 아래 그림과 같이, 왼쪽의 common, network에서 오른쪽 처럼 생성 후 연결만 해준다.
+![image](https://user-images.githubusercontent.com/68573143/148144099-c8fac700-dc7e-4084-912f-d8366062cce5.png)
+
+### 2) inject 셀을 더블클릭 후 보낼 메시지 명 수정
+
+### 3) mqtt 연결 브로커 서버, QoS 설정
+ - 토픽에 본인이 원하는 토픽명 입력
+ - QoS는 0으로 설정(추천)
+ - 서버 오른쪽 수정하기 버튼 클릭
+ <img src="https://user-images.githubusercontent.com/68573143/148144310-eee7c7fa-d9c8-4767-bae5-df0745d8aead.png"  width="400" height="300"/>
+
+### 4) mqtt 연결 브로커 서버 & 인증서 입력
+ - 포트 8883(aws)로 변경
+ - 서버는 2. 5)에서 찾은 엔드포인트 주소 입력
+ - 사용 TLS 오른쪽 수정하기 버튼 클릭 후 인증서, 비밀키, CA 인증서 받은 파일 선택 ( CA는 CA1로 )
+
+![image](https://user-images.githubusercontent.com/68573143/148144451-ae9795ca-fc23-406c-b4b2-50a23eae111f.png)
+
+### 5) mqtt in 셀 더블클릭 및 토픽, QoS 설정
+ - mqtt out 셀에서 나머지는 설정해뒀으므로, 서버 및 인증서는 제대로 되어있는 확인만 하기
+ - msg.payload 부분 디버그창으로 출력이 되어있는지 확인
+
+### 6) 배포하기 클릭 및 접속됨 확인
+ - 접속됨이 뜨지 않는다면, 앞의 순서가 제대로 되어있는지 확인해보기.
+![image](https://user-images.githubusercontent.com/68573143/148144608-2ff5b32a-ae49-45a6-ab19-bd638bf38201.png)
+
+### 7) 접속 됨 확인 & aws로 이동
+ - aws iot -> 테스트 -> MQTT 테스트 클라리언트
+ - 주제 구독에서 본인이 MQTT out에서 입력한 주제 입력
+ - 구독 버튼 클릭
+<img src="https://user-images.githubusercontent.com/68573143/148144823-3903b2a1-586c-42b6-8db3-c42607caa4e4.png"  width="500" height="380"/>
+
+### 8) Node-RED에서 Test MQTT 왼쪽의 파란색 버튼을 클릭하고 메시지가 제대로 받아지는지 확인
+![image](https://user-images.githubusercontent.com/68573143/148144912-8144e653-6655-4cbd-bc1e-d8aa6622b26d.png)
+
+
+### 9) aws에서 Node-Red로 메시지 전송
+ - 주제 게시로 이동 mqtt in 셀에서 설정한 topic으로 이름을 입력 후 게시 클릭
+ - Node-RED debug창에서 제대로 메시지 받아지는지 확인
+
+![image](https://user-images.githubusercontent.com/68573143/148145004-0aa49159-d58c-4f61-aed6-51967fed6b1e.png)
+
+* 이부분이 잘 수행이 되었다면, aws의 서버는 제대로 돌아감을 확인할 수 있다.
+* 이제 라즈베리 파이에서 직접 코드를 작성하여 연결을 확인하도록 한다.
+----------
+
+## 4. Raspberry pi와 aws 연결 
