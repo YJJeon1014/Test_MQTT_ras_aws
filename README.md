@@ -135,4 +135,29 @@
 	git clone https://github.com/aws/aws-iot-device-sdk-python-v2.git
 	
 ### 4) 샘플 앱을 설치 및 실행
+ - 샘플 앱에 대한 디바이스 인증서 파일을 설치
+	cd ~
+	mkdir certs
+	
+ - 인증서 파일 이름 수정 및 해당 위치에 파일 이동
+ 	* 루트 CA 인증서
+		~/certs/Amazon-root-CA-1.pem
+ 	* 디바이스 인증서
+		~/certs/device.pem.crt
+ 	* 프라이빗 키
+		~/certs/private.pem.key
 
+ - End point 주소 값 기억 및 저장
+
+### 5) 샘플 앱을 설치하고 실행
+ - 샘플 앱 디렉토리로 이동
+ 	cd ~/aws-iot-device-sdk-python-v2/samples
+	
+ - 아래 명령 줄을 입력하는데, your-iot-endpoint를 위에서 기억한 End point 주소로 변경
+ 	python3 pubsub.py --topic topic_1 --root-ca ~/certs/Amazon-root-CA-1.pem --cert ~/certs/device.pem.crt --key ~/certs/private.pem.key --endpoint your-iot-endpoint
+
+ - 실행 결과 확인
+ ![image](https://user-images.githubusercontent.com/68573143/148150714-8883157b-d761-4ef5-99ed-a29ed6ec65d6.png)
+
+ - aws에서도 topic 구독 후 제대로 메시지 들어온 것 확인 가능
+ ![image](https://user-images.githubusercontent.com/68573143/148150747-7af16fd5-7a29-4c64-a69b-d5df224d53f4.png)
