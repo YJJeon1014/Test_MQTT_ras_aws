@@ -23,7 +23,7 @@
  ### 4) ifconfig에서 확인한 ip주소를 입력하여 연결 및 id, pw 입력
  
  ### 5) 코드 작성 및 컴파일
-### <img src="https://user-images.githubusercontent.com/68573143/148022497-7e78a2ca-d5fc-4d61-a60a-a5515d90649a.png"  width="400" height="400"/>
+### <img src="https://user-images.githubusercontent.com/68573143/148022497-7e78a2ca-d5fc-4d61-a60a-a5515d90649a.png"  width="400" height="300"/>
 
 --------
 
@@ -58,7 +58,7 @@
 
 ---------
 
-## 3. 테스트를 위한 Node Red설치 및 실행
+## 3. aws 서버가 제대로 동작하는지 테스트를 위한 Node Red설치 및 실행 ( 4.으로 바로 넘어가도 됨 )
  - IoT 장치들간 연결을 쉽게 지원하는 오픈소스인 Node-red를 사용하여 코딩없이 연결이 제대로 이루어지는지 확인한다. ( 인증서 유효성 검증 )
  - 참고
 ### Node red 설치 및 설정 : http://daddynkidsmakers.blogspot.com/2019/05/iot-connection-noderedorg.html
