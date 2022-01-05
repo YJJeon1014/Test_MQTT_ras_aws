@@ -112,3 +112,27 @@
 ----------
 
 ## 4. Raspberry pi와 aws 연결 
+ ### 참고 : https://docs.aws.amazon.com/ko_kr/iot/latest/developerguide/connecting-to-existing-device.html
+ 
+ ### 1) 운영 체제 업데이트 및 필수 라이브러리 설치
+ 	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get install cmake
+	sudo apt-get install libssl-dev
+	
+### 2) Git 설치 & Python3 설치 ( 있다면 skip )
+ 	git --version
+	// 없다면, sudo apt-get install git
+	python3 --version // Python 3.5 이상만 가능.
+	// 없다면, sudo apt install python3
+	
+### 3) pip3에 대한 테스트
+	pip3 --version
+	// 없다면, sudo apt install python3-pip
+	cd ~
+	python3 -m pip install awsiotsdk
+	
+	git clone https://github.com/aws/aws-iot-device-sdk-python-v2.git
+	
+### 4) 샘플 앱을 설치 및 실행
+
